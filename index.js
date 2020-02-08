@@ -26,8 +26,6 @@ function main() {
   }
 
   getColor().then(() => {
-    // console.log(username)
-
     getData(username);
   });
 
