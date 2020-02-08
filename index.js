@@ -9,7 +9,7 @@ function main() {
   let username;
 
   async function getColor() {
-    favcolor = await inquirer.prompt({
+    color = await inquirer.prompt({
       message: "Favorite color?",
       name: "color"
     });
@@ -19,7 +19,7 @@ function main() {
     });
 
     username = await username.username;
-    favcolor = await favcolor.color;
+    favcolor = await color.color;
     // username = username.username;
     // favcolor = favcolor.color;
     return username, favcolor;
