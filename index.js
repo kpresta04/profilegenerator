@@ -165,6 +165,7 @@ function main() {
          position: relative;
          margin: 0 auto;
          margin-bottom: -50px;
+         height: 500px;
          display: flex;
          justify-content: center;
          flex-wrap: wrap;
@@ -175,8 +176,8 @@ function main() {
          border-radius: 6px;
          }
          .photo-header img {
-         width: 250px;
-         height: 250px;
+         width: 200px;
+         height: 200px;
          border-radius: 50%;
          object-fit: cover;
          margin-top: -75px;
@@ -187,9 +188,7 @@ function main() {
          width: 100%;
          text-align: center;
          }
-         .photo-header h1 {
-         margin-top: 10px;
-         }
+         
          .links-nav {
          width: 100%;
          text-align: center;
@@ -251,15 +250,20 @@ function main() {
             width: 100%;
           }
         }
+        #userPic{
+          display: block;
+          margin: 0px auto;
+          
+        }
       </style>
             
             </head>
             <body>
             <div class="wrapper">
 
-            <div class="photo-header"><img src="${avatar}" />
-            <h1>Hi!</h1><br>
-            <h1>My name is ${data.name}</h1><br>
+            <div class="photo-header"><img id="userPic"src="${avatar}" />
+            <h1>Hi!</h1>
+            <h1>My name is ${data.name}</h1>
             <h4>${employerString}</h4>
             <div class="links-nav">${data.location}
             
