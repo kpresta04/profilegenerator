@@ -1,82 +1,4 @@
-const inquirer = require("inquirer");
-const axios = require("axios");
-const fs = require("fs");
-
-const colors = {
-  green: {
-    wrapperBackground: "#E6E1C3",
-    headerBackground: "#C1C72C",
-    headerColor: "black",
-    photoBorderColor: "#black"
-  },
-  blue: {
-    wrapperBackground: "#5F64D3",
-    headerBackground: "#26175A",
-    headerColor: "white",
-    photoBorderColor: "#73448C"
-  },
-  pink: {
-    wrapperBackground: "#879CDF",
-    headerBackground: "#FF8374",
-    headerColor: "white",
-    photoBorderColor: "#FEE24C"
-  },
-  red: {
-    wrapperBackground: "#DE9967",
-    headerBackground: "#870603",
-    headerColor: "white",
-    photoBorderColor: "white"
-  }
-};
-
-function main() {
-  // Create variables
-
-  let favcolor;
-  let profileImage;
-  let username;
-
-  async function getColor() {
-    color = await inquirer.prompt({
-      message: "Favorite color?",
-      name: "color"
-    });
-    username = await inquirer.prompt({
-      message: "What is your git username?",
-      name: "username"
-    });
-
-    username = await username.username;
-    favcolor = await color.color;
-    // username = username.username;
-    // favcolor = favcolor.color;
-    return username, favcolor;
-  }
-
-  getColor().then(() => {
-    getData(username);
-  });
-
-  async function getData(username) {
-    try {
-      const response = await axios.get(
-        `https://api.github.com/users/${username}`
-      );
-      const data = await response.data;
-      // const avatar = await axios.get(`${data[0].owner.avatar_url}`);
-      const avatar = data.avatar_url;
-      // console.log("Number of repos: " + data.length);
-      // console.log(data);
-      let employerString;
-      data.company === null
-        ? (employerString = "Currently seeking work")
-        : (employerString = `Currently @ ${data.company}`);
-      fs.writeFile("test.html", generateHTML(favcolor), "utf8", err => {
-        if (err) throw err;
-        console.log("The file has been saved!");
-      });
-      function generateHTML(favcolor) {
-        return `<!DOCTYPE html>
+<!DOCTYPE html>
       <html lang="en">
          <head>
             <meta charset="UTF-8" />
@@ -102,7 +24,7 @@ function main() {
                height: 100%;
                }
                .wrapper {
-               background-color: ${colors[favcolor].wrapperBackground};
+               background-color: #879CDF;
                padding-top: 100px;
                }
                body {
@@ -144,8 +66,8 @@ function main() {
                display: flex;
                justify-content: center;
                flex-wrap: wrap;
-               background-color: ${colors[favcolor].headerBackground};
-               color: ${colors[favcolor].headerColor};
+               background-color: #FF8374;
+               color: white;
                padding: 10px;
                width: 95%;
                border-radius: 6px;
@@ -156,7 +78,7 @@ function main() {
                border-radius: 50%;
                object-fit: cover;
                margin-top: -75px;
-               border: 6px solid ${colors[favcolor].photoBorderColor};
+               border: 6px solid #FEE24C;
                box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
                }
                .photo-header h1, .photo-header h2 {
@@ -199,8 +121,8 @@ function main() {
                .card {
                  padding: 20px;
                  border-radius: 6px;
-                 background-color: ${colors[favcolor].headerBackground};
-                 color: ${colors[favcolor].headerColor};
+                 background-color: #FF8374;
+                 color: white;
                  margin: 20px;
                }
                
@@ -225,14 +147,14 @@ function main() {
             <body>
             <div class="wrapper">
 
-            <div class="photo-header"><img src="${avatar}" />
+            <div class="photo-header"><img src="https://avatars1.githubusercontent.com/u/55790832?v=4" />
             <h1>Hi!</h1><br>
-            <h1>My name is ${data.name}</h1><br>
-            <h4>${employerString}</h4>
-            <div class="links-nav">${data.location}
+            <h1>My name is Kellen Presta</h1><br>
+            <h4>Currently seeking work</h4>
+            <div class="links-nav">Overland Park, KS
             
-    <a class="nav-link" href=${data.html_url}>Github</a>
-    <a class="nav-link" href=${data.blog}>Blog</a>
+    <a class="nav-link" href=https://github.com/kpresta04>Github</a>
+    <a class="nav-link" href=kellenpresta.com>Blog</a>
 
     </div>
 
@@ -244,21 +166,12 @@ function main() {
             <div class="container">
             <div class="col">
 
-              <h2>${data.bio}</h2>
+              <h2>Full-Stack Developer</h2>
 
           </div>
 
-          </div>
-          </div>
+          </div></div>
                 <div class="wrapper"></div>
 
             </body>
-            </html>`;
-      }
-      //   console.log(avatar);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-}
-main();
+            </html>
