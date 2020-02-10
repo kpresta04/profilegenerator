@@ -266,12 +266,17 @@ function main() {
               <div class="row">
 
                 <div class="card"> <h2>
-                  Github Stars
-                </h2></div>
+                  Public Gists
+                </h2>
+                
+                <h3>${data.public_gists}</h3>
+                </div>
                 <div class="card">
                   <h2>
                     Following
                   </h2>
+                  <h3>${data.following}</h3>
+
                 </div>
                 
               </div>
