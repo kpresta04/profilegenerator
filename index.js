@@ -1,6 +1,7 @@
 const inquirer = require("inquirer");
 const axios = require("axios");
 const fs = require("fs");
+const pdf = require("html-pdf");
 
 const colors = {
   blue: {
@@ -77,16 +78,26 @@ function main() {
       // console.log(data);
       let employerString;
       let bioString;
+      let blogLink = "https://" + data.blog;
 
       data.bio === null ? (bioString = " &nbsp;") : (bioString = `${data.bio}`);
 
       data.company === null
         ? (employerString = "Currently seeking work")
         : (employerString = `Currently @ ${data.company}`);
-      fs.writeFile("test.html", generateHTML(favcolor), "utf8", err => {
+
+      const profileHTML = generateHTML(favcolor);
+      const options = { format: "Letter", height: "1188px", width: "886px" };
+      fs.writeFile("test.html", profileHTML, "utf8", err => {
         if (err) throw err;
         console.log("The file has been saved!");
       });
+      pdf
+        .create(profileHTML, options)
+        .toFile("./businesscard.pdf", function(err, res) {
+          if (err) return console.log(err);
+          console.log(res); // { filename: '/app/businesscard.pdf' }
+        });
       function generateHTML(favcolor) {
         return `<!DOCTYPE html>
       <html lang="en">
@@ -172,7 +183,7 @@ function main() {
          border: 6px solid ${colors[favcolor].photoBorderColor};
          box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
          }
-         .photo-header h1, .photo-header h2 {
+         .photo-header h1, .photo-header h2, .photo-header h4 {
          width: 100%;
          text-align: center;
          }
@@ -197,8 +208,7 @@ function main() {
          }
          .container {
          padding: 50px;
-         padding-left: 100px;
-         padding-right: 100px;
+        
          }
 
          .row {
@@ -214,7 +224,8 @@ function main() {
            border-radius: 6px;
            background-color: ${colors[favcolor].headerBackground};
            color: ${colors[favcolor].headerColor};
-           margin: 20px;
+           margin: 20px auto;
+           width: 40%;
          }
          
          .col {
@@ -235,6 +246,11 @@ function main() {
             zoom: .75; 
           } 
          }
+         @media only screen and (max-width: 600px) {
+          .card {
+            width: 90%;
+          }
+        }
       </style>
             
             </head>
@@ -248,7 +264,7 @@ function main() {
             <div class="links-nav">${data.location}
             
     <a class="nav-link" href=${data.html_url}>Github</a>
-    <a class="nav-link" href=${data.blog}>Blog</a>
+    <a class="nav-link" href=${blogLink}>Blog</a>
 
     </div>
 
@@ -264,7 +280,7 @@ function main() {
 
               <div class="row">
                 <div class="card"> <h2>
-                  Public Repositories
+                  Public Repos
                 </h2>
                 <h3>${data.public_repos}</h3>
                 
