@@ -3,6 +3,12 @@ const axios = require("axios");
 const fs = require("fs");
 
 const colors = {
+  blue: {
+    wrapperBackground: "#5F64D3",
+    headerBackground: "rgb(22, 22, 117)",
+    headerColor: "white",
+    photoBorderColor: "rgb(1, 3, 43)"
+  },
   green: {
     wrapperBackground: "#E6E1C3",
     headerBackground: "#C1C72C",
@@ -38,8 +44,10 @@ function main() {
 
   async function getColor() {
     color = await inquirer.prompt({
+      type: "checkbox",
       message: "Favorite color?",
-      name: "color"
+      name: "color",
+      choices: ["blue", "purple", "red", "pink", "green"]
     });
     username = await inquirer.prompt({
       message: "What is your git username?",
@@ -68,6 +76,10 @@ function main() {
       // console.log("Number of repos: " + data.length);
       // console.log(data);
       let employerString;
+      let bioString;
+
+      data.bio === null ? (bioString = " &nbsp;") : (bioString = `${data.bio}`);
+
       data.company === null
         ? (employerString = "Currently seeking work")
         : (employerString = `Currently @ ${data.company}`);
@@ -99,7 +111,7 @@ function main() {
          padding: 0;
          margin: 0;
          }
-         html, body, .wrapper {
+         html, body {
          height: 100%;
          }
          .wrapper {
@@ -206,6 +218,8 @@ function main() {
          }
          
          .col {
+           padding-top: 3em;
+        
          flex: 1;
          text-align: center;
          }
@@ -246,7 +260,7 @@ function main() {
             <div class="container">
             <div class="col">
 
-              <h2>${data.bio}</h2>
+              <h2>${bioString}</h2>
 
               <div class="row">
                 <div class="card"> <h2>
