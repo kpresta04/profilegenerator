@@ -269,6 +269,10 @@ function main() {
               display: block;
               float:right;
             }
+            #botWrapper{
+              position: relative;
+              top: 46em;
+            }
          }
          @media only screen and (max-width: 600px) {
           .card {
@@ -386,7 +390,7 @@ function main() {
 
           </div>
           </div>
-                <div class="wrapper"></div>
+                <div id="botWrapper" class="wrapper"></div>
 
             </body>
             </html>`;
