@@ -64,7 +64,7 @@
          position: relative;
          margin: 0 auto;
          margin-bottom: -50px;
-         height: 500px;
+         
          display: flex;
          justify-content: center;
          flex-wrap: wrap;
@@ -110,7 +110,7 @@
          }
 
          .row {
-           /* display: grid; */
+          
            flex-wrap: wrap;
            justify-content: space-between;
            margin-top: 20px;
@@ -143,24 +143,46 @@
           body { 
             zoom: .75; 
           } 
+         
+          .grid{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            grid-template-areas:
+             "topleft topright"
+             "botleft botright";
+          }
          }
          @media only screen and (max-width: 600px) {
           .card {
             width: 100%;
           }
+          .grid{
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-template-rows: 1fr 1fr 1fr 1fr;
+          grid-template-areas:
+           "topleft"
+           "topright"
+           "botleft"
+           "botright";
         }
-        #userPic{
-          display: block;
-          margin: 0px auto;
-          
         }
-        .grid{
+        @media only screen and (min-width: 601px) {
+          .grid{
           display: grid;
           grid-template-columns: 1fr 1fr;
           grid-template-rows: 1fr 1fr;
           grid-template-areas:
            "topleft topright"
            "botleft botright";
+        }
+          
+          }
+        #userPic{
+          display: block;
+          margin: 0px auto;
+          
         }
         #card1{
           display: grid;
@@ -208,46 +230,42 @@
             <div class="col">
 
               <h2>Full-Stack Developer</h2>
-
               <div class="grid">
 
-
-              <div id="row1" class="row">
-                <div id="card1"class="card"> <h2>
+             
+                <div id="card1" class="card"> <h2>
                   Public Repos
                 </h2>
                 <h3>11</h3>
                 
                 </div>
-                <div id="card2" class="card">
+                <div  id="card2" class="card">
                   <h2>
                     Followers
                   </h2>
                   <h3>0</h3>
 
                 </div>
-              </div>
-              <div id="row2" class="row">
+              
+            
 
-                <div id="card3" class="card"> <h2>
+                <div  id="card3" class="card"> <h2>
                   Public Gists
                 </h2>
                 
                 <h3>0</h3>
                 </div>
-                <div id="card4" class="card">
+                <div  id="card4" class="card">
                   <h2>
                     Following
                   </h2>
-                  <h3>0</h3>
+                  <h3>1</h3>
 
                 </div>
                 
-              </div>
-
+           
           </div>
-        </div>
-
+          </div>
 
           </div>
           </div>

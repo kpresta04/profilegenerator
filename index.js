@@ -165,7 +165,7 @@ function main() {
          position: relative;
          margin: 0 auto;
          margin-bottom: -50px;
-         height: 500px;
+         
          display: flex;
          justify-content: center;
          flex-wrap: wrap;
@@ -211,7 +211,7 @@ function main() {
          }
 
          .row {
-           display: flex;
+          
            flex-wrap: wrap;
            justify-content: space-between;
            margin-top: 20px;
@@ -224,7 +224,7 @@ function main() {
            background-color: ${colors[favcolor].headerBackground};
            color: ${colors[favcolor].headerColor};
            margin: 20px auto;
-           width: 40%;
+           width: 70%;
          }
          
          .col {
@@ -244,16 +244,66 @@ function main() {
           body { 
             zoom: .75; 
           } 
+         
+          .grid{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            grid-template-areas:
+             "topleft topright"
+             "botleft botright";
+          }
          }
          @media only screen and (max-width: 600px) {
           .card {
             width: 100%;
           }
+          .grid{
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-template-rows: 1fr 1fr 1fr 1fr;
+          grid-template-areas:
+           "topleft"
+           "topright"
+           "botleft"
+           "botright";
         }
+        }
+        @media only screen and (min-width: 601px) {
+          .grid{
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: 1fr 1fr;
+          grid-template-areas:
+           "topleft topright"
+           "botleft botright";
+        }
+          
+          }
         #userPic{
           display: block;
           margin: 0px auto;
           
+        }
+        #card1{
+          display: grid;
+          grid-area: topleft
+        }
+        #card2{
+
+          display: grid;
+
+          grid-area: topright;
+        }
+        #card3{
+          display: grid;
+
+          grid-area: botleft;
+        }
+        #card4{
+          display: grid;
+
+          grid-area: botright;
         }
       </style>
             
@@ -281,31 +331,32 @@ function main() {
             <div class="col">
 
               <h2>${bioString}</h2>
+              <div class="grid">
 
-              <div class="row">
-                <div class="card"> <h2>
+             
+                <div id="card1" class="card"> <h2>
                   Public Repos
                 </h2>
                 <h3>${data.public_repos}</h3>
                 
                 </div>
-                <div class="card">
+                <div  id="card2" class="card">
                   <h2>
                     Followers
                   </h2>
                   <h3>${data.followers}</h3>
 
                 </div>
-              </div>
-              <div class="row">
+              
+            
 
-                <div class="card"> <h2>
+                <div  id="card3" class="card"> <h2>
                   Public Gists
                 </h2>
                 
                 <h3>${data.public_gists}</h3>
                 </div>
-                <div class="card">
+                <div  id="card4" class="card">
                   <h2>
                     Following
                   </h2>
@@ -313,8 +364,8 @@ function main() {
 
                 </div>
                 
-              </div>
-
+           
+          </div>
           </div>
 
           </div>
