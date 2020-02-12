@@ -110,7 +110,7 @@
          }
 
          .row {
-           display: flex;
+           /* display: grid; */
            flex-wrap: wrap;
            justify-content: space-between;
            margin-top: 20px;
@@ -123,7 +123,7 @@
            background-color: rgb(22, 22, 117);
            color: white;
            margin: 20px auto;
-           width: 40%;
+           width: 70%;
          }
          
          .col {
@@ -154,6 +154,34 @@
           margin: 0px auto;
           
         }
+        .grid{
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: 1fr 1fr;
+          grid-template-areas:
+           "topleft topright"
+           "botleft botright";
+        }
+        #card1{
+          display: grid;
+          grid-area: topleft
+        }
+        #card2{
+
+          display: grid;
+
+          grid-area: topright;
+        }
+        #card3{
+          display: grid;
+
+          grid-area: botleft;
+        }
+        #card4{
+          display: grid;
+
+          grid-area: botright;
+        }
       </style>
             
             </head>
@@ -181,14 +209,17 @@
 
               <h2>Full-Stack Developer</h2>
 
-              <div class="row">
-                <div class="card"> <h2>
+              <div class="grid">
+
+
+              <div id="row1" class="row">
+                <div id="card1"class="card"> <h2>
                   Public Repos
                 </h2>
                 <h3>11</h3>
                 
                 </div>
-                <div class="card">
+                <div id="card2" class="card">
                   <h2>
                     Followers
                   </h2>
@@ -196,15 +227,15 @@
 
                 </div>
               </div>
-              <div class="row">
+              <div id="row2" class="row">
 
-                <div class="card"> <h2>
+                <div id="card3" class="card"> <h2>
                   Public Gists
                 </h2>
                 
                 <h3>0</h3>
                 </div>
-                <div class="card">
+                <div id="card4" class="card">
                   <h2>
                     Following
                   </h2>
@@ -215,6 +246,8 @@
               </div>
 
           </div>
+        </div>
+
 
           </div>
           </div>
