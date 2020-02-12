@@ -88,7 +88,7 @@ function main() {
 
       const profileHTML = generateHTML(favcolor);
       const options = { format: "Letter", height: "1188px", width: "886px" };
-      fs.writeFile("test.html", profileHTML, "utf8", err => {
+      fs.writeFile("output.html", profileHTML, "utf8", err => {
         if (err) throw err;
         console.log("The file has been saved!");
       });
@@ -244,15 +244,31 @@ function main() {
           body { 
             zoom: .75; 
           } 
+          .card{
+            width: 40%;
+          }
          
           .grid{
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-            grid-template-areas:
-             "topleft topright"
-             "botleft botright";
-          }
+            display: flex !important;
+           justify-content: space-between;
+            }
+            #card1{
+              display: block;
+              float:left;
+            }
+            #card2{
+    
+              display: block;
+              float:right;
+            }
+            #card3{
+              display: block;
+              float:left;
+            }
+            #card4{
+              display: block;
+              float:right;
+            }
          }
          @media only screen and (max-width: 600px) {
           .card {

@@ -25,7 +25,7 @@
          height: 100%;
          }
          .wrapper {
-         background-color: #5F64D3;
+         background-color: #DE9967;
          padding-top: 100px;
          }
          body {
@@ -68,7 +68,7 @@
          display: flex;
          justify-content: center;
          flex-wrap: wrap;
-         background-color: rgb(22, 22, 117);
+         background-color: #870603;
          color: white;
          padding: 10px;
          width: 95%;
@@ -80,7 +80,7 @@
          border-radius: 50%;
          object-fit: cover;
          margin-top: -75px;
-         border: 6px solid rgb(1, 3, 43);
+         border: 6px solid white;
          box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
          }
          .photo-header h1, .photo-header h2, .photo-header h4 {
@@ -120,7 +120,7 @@
          .card {
            padding: 20px;
            border-radius: 6px;
-           background-color: rgb(22, 22, 117);
+           background-color: #870603;
            color: white;
            margin: 20px auto;
            width: 70%;
@@ -143,15 +143,31 @@
           body { 
             zoom: .75; 
           } 
+          .card{
+            width: 40%;
+          }
          
           .grid{
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-            grid-template-areas:
-             "topleft topright"
-             "botleft botright";
-          }
+            display: flex !important;
+           justify-content: space-between;
+            }
+            #card1{
+              display: block;
+              float:left;
+            }
+            #card2{
+    
+              display: block;
+              float:right;
+            }
+            #card3{
+              display: block;
+              float:left;
+            }
+            #card4{
+              display: block;
+              float:right;
+            }
          }
          @media only screen and (max-width: 600px) {
           .card {
